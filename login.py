@@ -1,10 +1,16 @@
-stored_username = "testUser"
-stored_password = "testPass"
+credentials = {
+	"testUser": "testPass",
+	"gwo0d": "password123",
+    "toby": "tobyisthebest"
+}
 
 UserReq = input("What is your username: ")
 PassReq = input("What is your password: ")
 
-if UserReq != stored_username or PassReq != stored_password:
-    print("Login failed. Make sure you have typed in the correct characters and try again")
-else:
-    print("Login successful")
+try:
+	if credentials[UserReq] == PassReq:
+		print("Logged in!")
+	else:
+		print("Login failed!")
+except KeyError:
+	print("Login failed!")
