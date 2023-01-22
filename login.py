@@ -1,5 +1,10 @@
 import json
+import hashlib
 
+
+def hash_password(password):
+	h = hashlib.sha3_512(password.encode("UTF-8")).hexdigest()
+	return h
 
 credentials = {}
 
@@ -11,7 +16,7 @@ menu = int(input("Enter 1 to login and 2 to sign up: "))
 if menu == 1:
 
 	UserReq = input("What is your username: ")
-	PassReq = input("What is your password: ")
+	PassReq = hash_password(input("What is your password: "))
 
 	try:
 		if credentials[UserReq] == PassReq:
@@ -23,7 +28,7 @@ if menu == 1:
 
 elif menu == 2:
 	NewUser = input("Please select a username: ")
-	NewPass = input("Please select your password: ")
+	NewPass = hash_password(input("Please select your password: "))
 
 	try:
 		credentials[NewUser]
